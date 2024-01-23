@@ -16,7 +16,7 @@ function showElement(e) {
   console.log(e);
   // e.cancelBubble = true;                           // prevent the bubbling up through the elements with a click on the innermost element
   // e.stopPropagation();                             // prevents bubbling and capturing
-  alert("Using 'e.target': " + e.target.innerHTML);  // event is the element that recieved the click
+  // alert("Using 'e.target': " + e.target.innerHTML);  // event is the element that recieved the click
   // alert("Using 'this': " + this.innerHTML);          // this is the element that fired the event  
   // alert("This is only only link element node...or is it?")
 }
