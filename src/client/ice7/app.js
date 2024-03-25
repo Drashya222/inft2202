@@ -6,10 +6,10 @@ const PORT = 3000;
 const app = express();
 
 app.use(express.static('..'));
-// app.use((req, res) => {
-//     const { url, method } = req;
-//     console.log(`[${new Date().toISOString()}] ${method} ${url}`);
-// })
+app.use((req, res) => {
+    const { url, method } = req;
+    console.log(`[${new Date().toISOString()}] ${method} ${url}`);
+})
 
 app.get('/', (req,res) => {
     res.writeHead(200, { 'Content-Type':  'text/plain' });
