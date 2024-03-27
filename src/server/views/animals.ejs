@@ -1,0 +1,25 @@
+<%- include('partials/header.ejs') %>
+
+<main>
+    <div class="container">
+        <table class = "table table-striped">
+            <thead>
+                <% for (let animal of animals) { %>
+                <tr>
+                    <td>
+                        <%= animal.name %>
+                    </td>
+                    <td>
+                        <%= animal.legs %> legs
+                    </td>
+                    <td>
+                        <%= animal.heads %> heads
+                    </td>
+                </tr>
+                %>}
+            </thead>
+        </table>
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
