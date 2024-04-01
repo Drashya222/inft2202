@@ -16,8 +16,8 @@ app.set('views', import.meta.dirname + './views');
 
 app.use(express.static(import.meta.dirname + '/../client'));
 // Middleware to log requests
-app.use('/node_modules', express.static(import.meta.dirname+ '/../../node_modules')
-);
+app.use('/node_modules', express.static(import.meta.dirname 
+        + '/../../node_modules'));
 
 app.use(RequestLogger);
 
