@@ -116,7 +116,7 @@ async function postAnimal(animal) {
  */
 async function getAnimals() {
     try {
-        const response = await fetch('/api/animal   ');
+        const response = await fetch('/api/animal');
         if (!response.ok) {
             throw new Error('Failed to retrieve animals');
         }

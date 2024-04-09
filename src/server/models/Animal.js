@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 
 const animalSchema = new Schema({
   name: String,
-  legs: Integer,
-  heads: Integer,
+  legs: Number,
+  heads: Number,
   sound: String 
 });
 
