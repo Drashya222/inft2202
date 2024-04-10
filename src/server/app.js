@@ -17,7 +17,6 @@ app.use(express.static(import.meta.dirname + '/../client'));
 app.use('/node_modules', express.static(import.meta.dirname + '/../../node_modules'));
 
 app.use(RequestLogger);
-
 app.use(animalsrouter);
 
 mongoose.connect('mongodb://127.0.0.1:27017/inft2202')

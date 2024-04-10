@@ -8,11 +8,14 @@ export default async (req, res, next)=>{
         query.name = rq.params.name; 
     }
 
-    const animals = await Animal.find(query);
-
-    if (query.name){
-        res.json(animals.pop());
-    } else{
-        res.json(animals);
-    };
+    try {
+        const animals = await Animal.find(query);
+        if (animals.length === 0) {
+            return res.status(404).send('Animal not found');
+        }
+        return res.json(animals);
+    } catch (error) {
+        console.error('Error retrieving animals:', error);
+        next(error);
+    }
 }
