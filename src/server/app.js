@@ -5,7 +5,7 @@ import { animalsrouter } from  './routes/animals.js';
 import { RequestLogger } from './utils/logging.js';
 
 
-
+//port declaration.
 const PORT = 3090;
 const app = express();
 
