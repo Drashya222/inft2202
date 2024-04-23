@@ -1,4 +1,4 @@
-import AnimalService from '../../services/animal.service.js';
+import AnimalService from '../../../js/animal.service.js';
 app.get('/animals', (req, res) => {
     res.render('animals/show', { animals: animalsData });
 });

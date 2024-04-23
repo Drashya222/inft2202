@@ -1,0 +1,101 @@
+<!-- edit-animal.ejs -->
+<!-- //Name ->Drashya Patel
+//Student ID -> 100863337
+//Date: April 19th 2024 -->
+<%- include('../includes/main') %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2>Edit Animal</h2>
+
+      <form id="editAnimalForm" action="/<%= animal._id %>/edit" method="POST">
+        <div class="form-group">
+          <label for="scientificName">Zoo</label>
+          <input type="text" class="form-control" id="zooName" name="Zoo" value="<%= animal.Zoo %>">
+        </div>
+        <div class="form-group">
+          <label for="scientificName">Scientific Name</label>
+          <input type="text" class="form-control" id="scientificName" name="scientificName" value="<%= animal.scientificName %>">
+        </div>
+        <div class="form-group">
+          <label for="commonName">Common Name</label>
+          <input type="text" class="form-control" id="commonName" name="commonName" value="<%= animal.commonName %>">
+        </div>
+        <div class="form-group">
+          <label for="givenName">Given Name</label>
+          <input type="text" class="form-control" id="givenName" name="givenName" value="<%= animal.givenName %>">
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select class="form-control" id="gender" name="gender">
+            <option value="Male" <%= animal.gender === "Male" ? "selected" : "" %>>Male</option>
+            <option value="Female" <%= animal.gender === "Female" ? "selected" : "" %>>Female</option>
+            <option value="Other" <%= animal.gender === "Other" ? "selected" : "" %>>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" class="form-control" id="age" name="age" value="<%= animal.age %>">
+        </div>
+        <div class="form-group">
+          <label for="dateOfBirth">Date of Birth</label>
+          <% const formattedDateOfBirth = animal.dateOfBirth ? animal.dateOfBirth.toISOString().substring(0, 10) : ""; %>
+          <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" value="<%= formattedDateOfBirth %>">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="isTransportable" name="isTransportable" <%= animal.isTransportable ? "checked" : "" %>>
+          <label class="form-check-label" for="isTransportable">Transportable</label>
+        </div>
+        <button type="button" class="btn btn-primary" id="updateAnimalBtn">Update Animal Record</button>
+        <button type="button" class="btn btn-danger" id="deleteAnimalBtn">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Handler to update animal details using fetch
+  document.getElementById('updateAnimalBtn').addEventListener('click', async () => {
+    try {
+      const form = document.getElementById('editAnimalForm');
+      const formData = new FormData(form);
+      const serializedFormData = {};
+      for (const [key, value] of formData.entries()) {
+        serializedFormData[key] = value;
+      }
+      const response = await fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(serializedFormData)
+      });
+      if (response.ok) {
+        window.location.href = '/'; // Redirect to animals list after deletion
+
+      } else {
+        console.error('Failed to update animal details');
+      }
+    } catch (error) {
+      console.error('Error updating animal details:', error);
+    }
+  });
+
+  document.getElementById('deleteAnimalBtn').addEventListener('click', async () => {
+    try {
+      const response = await fetch('/<%= animal._id %>/delete', {
+        method: 'DELETE'
+      });
+      if (response.ok) {
+        window.location.href = '/'; // Redirect to animals list after deletion
+      } else {
+        console.error('Failed to delete animal');
+      }
+    } catch (error) {
+      console.error('Error deleting animal:', error);
+    }
+  });
+</script>
+
+<%- include('../includes/end') %>

@@ -1,0 +1,21 @@
+.custom-navbar {
+    background-color: #e3f2fd; /* Custom background color */
+  }
+  
+  .custom-toggler {
+    border-color: #2196f3; /* Custom color for toggler button */
+  }
+  
+  .custom-btn {
+    margin-left: 10px; /* Add margin between buttons */
+  }
+  
+  /* Optional: Add additional styling for hover and active states */
+  .custom-btn:hover {
+    opacity: 0.8;
+  }
+  
+  .custom-btn:active {
+    transform: translateY(1px);
+  }
+  

@@ -1,0 +1,86 @@
+<!-- //Name ->Drashya Patel
+//Student ID -> 100863337
+//Date: April 19th 2024 -->
+<%- include('../includes/main') %>
+<div class="container">
+  <form id="animalForm">
+    <div class="form-group">
+      <label for="scientificName">Zoo</label>
+      <input type="text" class="form-control" id="zooName" name="Zoo" placeholder="Enter scientific name">
+    </div>
+    <div class="form-group">
+      <label for="scientificName">Scientific Name</label>
+      <input type="text" class="form-control" id="scientificName" name="scientificName" placeholder="Enter scientific name">
+    </div>
+    <div class="form-group">
+      <label for="commonName">Common Name</label>
+      <input type="text" class="form-control" id="commonName" name="commonName" placeholder="Enter common name">
+    </div>
+    <div class="form-group">
+      <label for="givenName">Given Name</label>
+      <input type="text" class="form-control" id="givenName" name="givenName" placeholder="Enter given name">
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select class="form-control" id="gender" name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age">
+    </div>
+    <div class="form-group">
+      <label for="dateOfBirth">Date of Birth</label>
+      <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth">
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="isTransportable" name="isTransportable">
+      <label class="form-check-label" for="isTransportable">Transportable</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Animal</button>
+    <button type="button" class="btn btn-secondary" id="resetForm">Reset</button>
+  </form>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('animalForm');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      try {
+        const formData = new FormData(form);
+        const serializedFormData = {};
+        for (const [key, value] of formData.entries()) {
+          serializedFormData[key] = value;
+        }
+
+        const response = await fetch('/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(serializedFormData)
+        });
+
+        if (response.ok) {
+          // Redirect or handle success
+          window.location.href = '/';
+        } else {
+          console.error('Failed to add animal');
+        }
+      } catch (error) {
+        console.error('Error adding animal:', error);
+      }
+    });
+
+    const resetButton = document.getElementById('resetForm');
+    resetButton.addEventListener('click', () => {
+      form.reset();
+    });
+  });
+</script>
+
+<%- include('../includes/end') %>
